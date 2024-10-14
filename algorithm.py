@@ -189,7 +189,7 @@ def RoMa_matcher(img1_path, img2_path, plot=True):
     img3 = plot_matches(img0, img1, result)
 
     # Display images with matches 
-    plot_matches(img0, img1, result, save_path='/content/matches_roma.png')
+    plot_matches(img0, img1, result, save_path='./matches/matches_roma_result.png')
     return img3
 
 
@@ -207,7 +207,7 @@ def superglue_matcher(img1_path, img2_path, plot=True):
     img3 = plot_matches(img0, img1, result)
 
     # Display images with matches 
-    plot_matches(img0, img1, result, save_path='/content/matches_superglue.png')
+    plot_matches(img0, img1, result, save_path='./matches/matches_superglue_result.png')
     return img3
 
 def display_image(image_path):
