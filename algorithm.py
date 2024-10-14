@@ -209,3 +209,17 @@ def superglue_matcher(img1_path, img2_path, plot=True):
     # Display images with matches 
     plot_matches(img0, img1, result, save_path='/content/matches_superglue.png')
     return img3
+
+def display_image(image_path):
+    # Load images
+    img1 = cv2.imread(image_path1)
+
+    # Convert images to RGB for display
+    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
+
+    # Display images side by side
+    ax1.imshow(img1)
+    ax1.set_title('Image')
+    ax1.axis('off')
+
+    plt.show()
