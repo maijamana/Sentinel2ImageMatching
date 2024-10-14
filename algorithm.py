@@ -33,7 +33,7 @@ def SIFT_keypoint_detection(image_path, plot=True):
 
 
 
-def BRISK_keypoint_detection(img, plot=True):
+def BRISK_keypoint_detection(image_path, plot=True):
     # BRISK parameter settings
     thresh = 30
     octaves = 4
@@ -61,7 +61,7 @@ def BRISK_keypoint_detection(img, plot=True):
 
     return img_with_keypoints
 
-def ORB_keypoint_detection(img, plot=True):
+def ORB_keypoint_detection(image_path, plot=True):
     # ORB parameter settings
     nfeatures = 20000
     scaleFactor = 2.0
@@ -86,6 +86,7 @@ def ORB_keypoint_detection(img, plot=True):
 
     # Detect keypoints and compute descriptors
     keypoints, descriptors = orb.detectAndCompute(img, None)
+    img_with_keypoints = cv2.drawKeypoints(img, keypoints, None, flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
     num_keypoints = len(keypoints)
     print(f"Number of keypoints detected: {num_keypoints}")
@@ -126,7 +127,7 @@ def BF_matcher(img1_path, img2_path, keypoints_img1, descriptors_img1, keypoints
 
     img3 = cv2.drawMatchesKnn(img1, keypoints_img1, img2, keypoints_img2, matches, None, **draw_params)
 
-    # Display images with matches  
+    # Display images with matches
     plt.imshow(img3)
     plt.title("BF-based Matches")
     plt.axis('off')
@@ -166,7 +167,7 @@ def FLANN_matcher(img1_path, img2_path, keypoints_img1, descriptors_img1, keypoi
 
     img3 = cv2.drawMatchesKnn(img1, keypoints_img1, img2, keypoints_img2, matches, None, **draw_params)
 
-    # Display images with matches  
+    # Display images with matches
     plt.imshow(img3)
     plt.title("FLANN-based Matches")
     plt.axis('off')
@@ -188,7 +189,7 @@ def RoMa_matcher(img1_path, img2_path, plot=True):
 
     img3 = plot_matches(img0, img1, result)
 
-    # Display images with matches 
+    # Display images with matches
     plot_matches(img0, img1, result, save_path='./matches/matches_roma_result.png')
     return img3
 
@@ -206,20 +207,24 @@ def superglue_matcher(img1_path, img2_path, plot=True):
 
     img3 = plot_matches(img0, img1, result)
 
-    # Display images with matches 
+    # Display images with matches
     plot_matches(img0, img1, result, save_path='./matches/matches_superglue_result.png')
     return img3
 
 def display_image(image_path):
-    # Load images
-    img1 = cv2.imread(image_path1)
+    # Load image
+    img1 = cv2.imread(image_path)
 
-    # Convert images to RGB for display
+    # Check if the image is loaded successfully
+    if img1 is None:
+        print(f"Error: Unable to load image from path: {image_path}")
+        return
+
+    # Convert image to RGB for display
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
-    # Display images side by side
-    ax1.imshow(img1)
-    ax1.set_title('Image')
-    ax1.axis('off')
-
+    # Display image
+    plt.imshow(img1)
+    plt.title('Image')
+    plt.axis('off')
     plt.show()
