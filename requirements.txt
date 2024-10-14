@@ -1,3 +1,4 @@
+# usage: pip install -r requirements.txt
 numpy==1.23.0
 pandas==1.5.3
 geopandas==0.13.0
@@ -6,3 +7,30 @@ shapely==2.0.1
 matplotlib==3.7.2
 opencv-python==4.7.0.72
 concurrent.futures; python_version<'3.9'
+torch>=2.2.0
+torchvision
+opencv-python
+kornia
+einops
+transforms3d
+h5py
+kornia_moons
+yacs
+gdown>=5.1.0
+tables
+imageio
+vispy
+xformers; os.name != 'nt'
+pyglet==1.5.28
+tensorboard
+scipy
+trimesh
+e2cnn
+scikit-learn
+scikit-image
+tqdm
+py3_wget
+roma
+loguru
+timm
+omegaconf
